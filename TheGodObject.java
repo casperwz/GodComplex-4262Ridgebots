@@ -136,8 +136,12 @@ public class TheGodObject extends LinearOpMode{
 
             // ANGLE WRAPPING FOR THE HEADING!
             double headingError = targetheta - drive.theta;
-            while (headingError > 180) headingError -= 360;
-            while (headingError <= -180) headingError += 360;
+            while (headingError > 180) {
+                headingError -= 360;
+            }
+            while (headingError <= -180){ 
+                headingError += 360;
+            }
             double pidPowerHeading = thetaCon.calculate(drive.theta, headingError);
 
             // 5. COMBINE AND DRIVE
