@@ -15,6 +15,8 @@ Put simply, you put in 4 points, of x and y, and specify a heading, theta. The f
 The robot this was first tested on is a parallel plate chassis, with Yellowjacket motors from Gobilda. It utilizes the Gobilda Pinpoint Odometry Computer for its imu, as opposed to the Control Hub imu. The odometry wheels are the Gobilda 4-bar variant, although it is not hard to change it to the swing-arm variation. Personally, I recommend the 4-bar variant.
 
 # Downloads and Setup
+This was done in Android Studio, which I recommend setting up before using this system. Eventually I'll add a way to import it through gradle.
+
 You will need every single Java file for this to work. Furthermore, you will need to check the offsets of your odometry pods for the rotation system to work. Grab a ruler, and measure in millimeters. I repeat, MM, from the odo-pods to your robot center.
 
 Next, ensure your GoBilda odometry computer is set up. You will need a test code to check which directions the odometry pods are in. After setting that up, move the robot in the direction of the arrows. The values should increase positively. If it does not, reverse the direction in CustomDrive. Additionally, make sure your motors are set up so that when going forward, all 4 motors have the same power values (which should be 1). If they are not, reverse some of them.
