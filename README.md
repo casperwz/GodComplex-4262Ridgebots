@@ -8,8 +8,12 @@ This is GodComplex (name subject to change pending vote circa 9/24/2026), an FTC
 
 Good luck, and have fun.
 
-# Overview
+# Overview and Demonstration
 Put simply, you put in 4 points, of x and y, and specify a heading, theta. The first and last points are your start and end. The second and third points build a Bezier Curve (shown in Curves, if you want to figure out the algorithm yourself). The robot might not explicitly pass through these secondary points, but they influence the robot's path, allowing it to maneuver around obstacles in one smooth motion
+
+
+https://github.com/user-attachments/assets/20df0579-625d-4c0d-b35d-7709c5e2847d
+
 
 # Hardware
 The robot this was first tested on is a parallel plate chassis, with Yellowjacket motors from Gobilda. It utilizes the Gobilda Pinpoint Odometry Computer for its imu, as opposed to the Control Hub imu. The odometry wheels are the Gobilda 4-bar variant, although it is not hard to change it to the swing-arm variation. Personally, I recommend the 4-bar variant.
