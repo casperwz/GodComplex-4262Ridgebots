@@ -43,8 +43,11 @@ Now, apologies for whiplash, but your movement values are now in INCHES. I repea
 
 # followPath()
 followPath() takes 3 values:
+
 path: the path you want it to move along, should be a Curves object
+
 profile: the "motion profile" of your path following. Should be a MoveScum object
+
 heading/theta: What angle you want your robot to be facing when moving. Note that this will execute first before any other movements. 0 will be the direction you face it when you init the robot.
 
 # You absolute clowns.
