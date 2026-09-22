@@ -91,6 +91,7 @@ public class TheGodObject extends LinearOpMode{
 
         waitForStart();
 
+        //THIS IS WHERE YOU ACTUALLY ADD STUFF, DON'T TOUCH ANYTHING PAST THE END OF THIS IF STATEMENT
         if(opModeIsActive()){
             followPath(path, profile, 0.0);
             sleep(500);
