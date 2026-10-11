@@ -83,7 +83,7 @@ public class CustomDrive {
         max = Math.max(max, Math.abs(powerFR));
         max = Math.max(max, Math.abs(powerBR));
 
-        // 3. Normalize powers if they exceed 1.0
+        //Normalize powers if they exceed 1.0
         if (max > 1.0) {
             powerFL /= max;
             powerBL /= max;
