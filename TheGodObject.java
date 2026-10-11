@@ -93,9 +93,9 @@ public class TheGodObject extends LinearOpMode{
 
         //THIS IS WHERE YOU ACTUALLY ADD STUFF, DON'T TOUCH ANYTHING PAST THE END OF THIS IF STATEMENT
         if(opModeIsActive()){
-            followPath(path, profile, 0.0, 3);
+            followPath(path, profile, 0.0, 4);
             sleep(500);
-            followPath(path2, profile, 85, 3);
+            followPath(path2, profile, 85, 4);
         }
 
 
