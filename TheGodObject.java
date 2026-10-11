@@ -93,14 +93,14 @@ public class TheGodObject extends LinearOpMode{
 
         //THIS IS WHERE YOU ACTUALLY ADD STUFF, DON'T TOUCH ANYTHING PAST THE END OF THIS IF STATEMENT
         if(opModeIsActive()){
-            followPath(path, profile, 0.0);
+            followPath(path, profile, 0.0, 3);
             sleep(500);
-            followPath(path2, profile, 85);
+            followPath(path2, profile, 85, 3);
         }
 
 
     }
-    public void followPath(Curves path, MoveScum profile, double targetheta) {
+    public void followPath(Curves path, MoveScum profile, double targetheta, double last) {
         xCon.reset();
         yCon.reset();
         thetaCon.reset();
@@ -108,13 +108,12 @@ public class TheGodObject extends LinearOpMode{
         ElapsedTime timer = new ElapsedTime();
         double totPathDist = path.arclength;
 
-        // We need to know when the profile is technically finished
-        double accelTime = profile.getMaxV() / profile.getMaxA();
-
         while (opModeIsActive()) {
             drive.updatePose();
-            // 2. ASK THE PACE CAR (Where should we be right now?)
             double currentTime = timer.seconds();
+            if(currentTime >= last){
+                break;
+            }
             MoveScum.Profile targetState = profile.calculate(totPathDist, currentTime);
 
             Point endPoint = path.getPosT(1.0);
@@ -122,23 +121,18 @@ public class TheGodObject extends LinearOpMode{
                 break;
             }
 
-            // 3. ASK THE MAP (Translate that distance into X, Y, and Velocity)
             double t = path.getT(targetState.pos);
             Point targetCoord = path.getPosT(t);
             Point rawDerivative = path.getDerivT(t);
 
-            // Calculate the angle of our Feedforward velocity vector
             double pathAngle = Math.atan2(rawDerivative.y, rawDerivative.x);
 
-            // Calculate pure Feedforward Power (Target Velocity * kV)
             double ffPowerX = Math.cos(pathAngle) * targetState.v * kV;
             double ffPowerY = Math.sin(pathAngle) * targetState.v * kV;
 
-            // 4. ASK THE CORRECTORS (PID)
             double pidPowerX = xCon.calculate(drive.x, targetCoord.x);
             double pidPowerY = yCon.calculate(drive.y, targetCoord.y);
 
-            // ANGLE WRAPPING FOR THE HEADING!
             double headingError = targetheta - drive.theta;
             while (headingError > 180) {
                 headingError -= 360;
@@ -148,13 +142,10 @@ public class TheGodObject extends LinearOpMode{
             }
             double pidPowerHeading = thetaCon.calculate(0, headingError);
 
-            // 5. COMBINE AND DRIVE
-            // Total Power = Proactive Push (FF) + Reactive Fix (PID)
             double finalDriveX = -(ffPowerX + pidPowerX);
             double finalDriveY = -(ffPowerY + pidPowerY);
             double finalTurn = -pidPowerHeading;
 
-            // 6. drive
             drive.fieldrive(finalDriveX, finalDriveY, finalTurn, drive.theta);
 
             telemetry.addData("Target Dist", targetState.pos);
