@@ -101,11 +101,15 @@ public class TheGodObject extends LinearOpMode{
 
     }
     public void followPath(Curves path, MoveScum profile, double targetheta) {
+        xCon.reset();
+        yCon.reset();
+        thetaCon.reset();
+        
         ElapsedTime timer = new ElapsedTime();
         double totPathDist = path.arclength;
 
         // We need to know when the profile is technically finished
-        double accelTime = profile.getMaxV() / profile.getMaxA(); // Note: You might need to add getters in MoveScum for this, or just rely on velocity == 0
+        double accelTime = profile.getMaxV() / profile.getMaxA();
 
         while (opModeIsActive()) {
             drive.updatePose();
@@ -115,7 +119,7 @@ public class TheGodObject extends LinearOpMode{
 
             Point endPoint = path.getPosT(1.0);
             if (targetState.v == 0 && Math.abs(endPoint.x - drive.x) < 2.0 && Math.abs(endPoint.y - drive.y) < 2.0) {
-                break; // This exits the while loop and moves to the next instruction
+                break;
             }
 
             // 3. ASK THE MAP (Translate that distance into X, Y, and Velocity)
