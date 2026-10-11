@@ -50,13 +50,15 @@ kV is its feedforward component, basically just gives the robot an extra kick wh
 Now, apologies for whiplash, but your movement values are now in INCHES. I repeat, INCHES. A foam mat is 24 inches x 24 inches. I expect you to figure out the rest. They are in doubles, so feel free to mess around with decimals.
 
 # followPath()
-followPath() takes 3 values:
+followPath() takes 4 values:
 
 path: the path you want it to move along, should be a Curves object
 
 profile: the "motion profile" of your path following. Should be a MoveScum object
 
 heading/theta: What angle you want your robot to be facing. The robot turns toward this heading while it drives the path, not before it. 0 will be the direction you face it when you init the robot.
+
+last: Basically a timeout clause, after that amount of seconds has passed, the loop automatically exists and moves on to the next. This is to prevent freezing from not being within the margin of error.
 
 # Credits
 - **FTCLib:** the PIDController class used for x, y, and heading correction.
