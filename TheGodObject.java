@@ -100,7 +100,6 @@ public class TheGodObject extends LinearOpMode{
 
 
     }
-    // Place this method inside your TheGodObject class, below runOpMode()
     public void followPath(Curves path, MoveScum profile, double targetheta) {
         ElapsedTime timer = new ElapsedTime();
         double totPathDist = path.arclength;
@@ -143,7 +142,7 @@ public class TheGodObject extends LinearOpMode{
             while (headingError <= -180){ 
                 headingError += 360;
             }
-            double pidPowerHeading = thetaCon.calculate(drive.theta, headingError);
+            double pidPowerHeading = thetaCon.calculate(0, headingError);
 
             // 5. COMBINE AND DRIVE
             // Total Power = Proactive Push (FF) + Reactive Fix (PID)
