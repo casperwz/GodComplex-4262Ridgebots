@@ -63,7 +63,7 @@ last: Basically a timeout clause, after that amount of seconds has passed, the l
 # Credits
 - **FTCLib:** the PIDController class used for x, y, and heading correction.
 - **goBILDA Pinpoint Odometry Computer and its driver:** position and heading tracking.
-- **AI tools (Claude and Gemini):** drafted the original followPath() loop in TheGodObject, including the numbered step comments still in that method. I integrated it with Curves, MoveScum, and CustomDrive. Some comments from the draft were removed on 10/11/2026. AI tools also helped me verify concepts and check for bugs, including swapping Math.pow for direct multiplication, the heading setpoint fix, and resetting the PID controllers between paths (both 10/11/2026).
+- **AI tools (Claude and Gemini):** drafted the original followPath() loop in TheGodObject. I integrated it with Curves, MoveScum, and CustomDrive. Some comments from the draft were removed on 10/11/2026. AI tools also helped me verify concepts and check for bugs, including swapping Math.pow for direct multiplication, the heading setpoint fix, and resetting the PID controllers between paths (both 10/11/2026).
 - Everything else, including the Bezier math and arc length table in Curves, the motion profile in MoveScum, and the drive code in CustomDrive, is my own work.
 
 # Thanks
