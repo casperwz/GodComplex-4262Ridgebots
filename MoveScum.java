@@ -5,6 +5,8 @@ public class MoveScum {
     private double maxA;
 
     public MoveScum(double maxV, double maxA){
+        if (maxA <= 0) throw new IllegalArgumentException("maxA must be positive");
+        
         this.maxV = maxV;
         this.maxA = maxA;
 
@@ -18,7 +20,8 @@ public class MoveScum {
 
     public Profile calculate(double totDist, double currTime){
         Profile state = new Profile();
-
+        
+        
         double at = maxV/maxA;
         double ad = 0.5*maxA*at*at;
         double maxVactual = maxV;
@@ -55,7 +58,7 @@ public class MoveScum {
         state.pos = totDist - distanceLeftToBrake;
         state.v = maxA * timeLeft;
     }
-        if (maxA <= 0) throw new IllegalArgumentException("maxA must be positive");
+        
 
         return state;
     }
